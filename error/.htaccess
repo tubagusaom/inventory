@@ -1,0 +1,15 @@
+Options +FollowSymLinks
+
+RewriteEngine On
+
+ErrorDocument 402 /project/inventory/error/404.php
+ErrorDocument 403 /project/inventory/error/404.php
+ErrorDocument 404 /project/inventory/error/404.php
+ErrorDocument 500 /project/inventory/error/404.php
+
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^.$ index.php
+
+RewriteRule ^notfound$ /project/inventory/error/notfound.php
+RewriteRule ^db$ /project/inventory/error/errordb.php
