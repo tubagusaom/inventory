@@ -1,5 +1,5 @@
 <script src="js/jquery-ui.js"></script>
-<h2 style="padding-bottom:10px">Tambah Obat Masuk</h2>
+<h2 style="padding-bottom:10px">Tambah Barang Masuk</h2>
 <form name="form1" method="post" action="" autocomplete="on">
   <div class="table-responsive">
     <table class=" table-aom">
@@ -8,11 +8,11 @@
         <td><input type="text" name="tglr" id="datepicker" placeholder="Pilih tanggal.." required /></td>
       </tr>
       <tr>
-        <td><label>Kode Obat</label></td>
-        <td><input type="text" name="kodeobat" id="kodeobat" placeholder="Pilih Obat.." class="full-width"  onClick="window.open('<?php echo $baseurl; ?>pages/web/viewbarang.php','popuppage','width=700,toolbar=0,resizable=0,scrollbars=no,height=400,top=100,left=100');" required></td>
+        <td><label>Kode Barang</label></td>
+        <td><input type="text" name="kodeobat" id="kodeobat" placeholder="Pilih Barang.." class="full-width"  onClick="window.open('<?= base_url(); ?>pages/web/viewbarang.php','popuppage','width=700,toolbar=0,resizable=0,scrollbars=no,height=400,top=100,left=100');" required></td>
       </tr>
       <tr>
-        <td><label>Nama Obat</label></td>
+        <td><label>Nama Barang</label></td>
         <td><input name="namaobat" type="text" id="namaobat" readonly="readonly" style="background:#ddd"></td>
       </tr>
       <tr>

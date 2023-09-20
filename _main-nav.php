@@ -50,8 +50,8 @@
 	}elseif($_SESSION['login_hash']=="pimpinan"){
 	?>
     <li class="dropdown"><a href="#"><span class="icon-pencil"></span> Laporan</a>
-      <ul <?= $_GET['page'] == 'order' || $_GET['page'] == 'stok' || $_GET['page'] == 'monthreporting' ? 'style="display:block;"' : '' ?>>
-        <li><a <?= $_GET['page'] == 'order' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=pimpinan&page=order">Permintaan Barang</a></li>
+      <ul <?= $_GET['page'] == 'order' || $_GET['page'] == 'orderedit' || $_GET['page'] == 'stok' || $_GET['page'] == 'monthreporting' ? 'style="display:block;"' : '' ?>>
+        <li><a <?= $_GET['page'] == 'order' || $_GET['page'] == 'orderedit' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=pimpinan&page=order">Permintaan Barang</a></li>
         <li><a <?= $_GET['page'] == 'stok' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=pimpinan&page=stok">Stok Barang</a></li>
         <li><a <?= $_GET['page'] == 'monthreporting' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=pimpinan&page=monthreporting">Barang Masuk dan Keluar</a></li>
       </ul>

@@ -2,8 +2,8 @@
 ob_start();
 if(isset($_GET['id']))
 {
-	$rs=mysql_query("Select * from data_obat where sha1(kode_obat)='".$_GET['id']."'");
-	$row=mysql_fetch_array($rs);
+	$rs=mysqli_query($koneksi, "Select * from data_obat where sha1(kode_obat)='".$_GET['id']."'");
+	$row=mysqli_fetch_array($rs);
 ?>
 <script src="js/jquery-ui.js"></script>
 <h2 style="padding-bottom:10px">Persetujuan Permintaan Obat</h2>
@@ -48,19 +48,19 @@ ob_end_flush();
 if(isset($_POST['button']))
 {
   $newDate = date("Y-m-d", strtotime($_POST['tglr']));
-	$q=mysql_query("Insert into obat_masuk (`tgl`,`kode_obat`,`jumlah`,`username`) values ('".$newDate."','".$_POST['kodeobat']."','".$_POST['qty']."','".$_SESSION['login_user']."')") or die(mysql_error());
-	$q2=mysql_query("Select * from data_persediaan where kode_obat='".$_POST['kodeobat']."'");
-	$rc=mysql_num_rows($q2);
+	$q=mysqli_query($koneksi, "Insert into obat_masuk (`tgl`,`kode_obat`,`jumlah`,`username`) values ('".$newDate."','".$_POST['kodeobat']."','".$_POST['qty']."','".$_SESSION['login_user']."')") or die(mysql_error());
+	$q2=mysqli_query($koneksi, "Select * from data_persediaan where kode_obat='".$_POST['kodeobat']."'");
+	$rc=mysqli_num_rows($q2);
 	if($rc==1)
 	{
-		$q3=mysql_query("Update data_persediaan SET masuk=masuk + ".$_POST['qty'].",stok_tersedia=stok_tersedia + ".$_POST['qty']." Where kode_obat='".$_POST['kodeobat']."'");
+		$q3=mysqli_query($koneksi, "Update data_persediaan SET masuk=masuk + ".$_POST['qty'].",stok_tersedia=stok_tersedia + ".$_POST['qty']." Where kode_obat='".$_POST['kodeobat']."'");
 		if($q3)
 		{
 			echo "Data sudah disimpan";
 		}
 	}else{
-    $rs=mysql_query("Update data_obat SET nama_obat='".$_POST['namaobat']."', stts_obat='1' Where sha1(kode_obat)='".$_GET['id']."' ");
-		$q4=mysql_query("Insert into data_persediaan (`kode_persediaan`,`kode_obat`,`masuk`,`stok_tersedia`) values ('','".$_POST['kodeobat']."','".$_POST['qty']."','".$_POST['qty']."')");
+    $rs=mysqli_query($koneksi, "Update data_obat SET nama_obat='".$_POST['namaobat']."', stts_obat='1' Where sha1(kode_obat)='".$_GET['id']."' ");
+		$q4=mysqli_query($koneksi, "Insert into data_persediaan (`kode_persediaan`,`kode_obat`,`masuk`,`stok_tersedia`) values ('','".$_POST['kodeobat']."','".$_POST['qty']."','".$_POST['qty']."')");
 		if($q4 AND $rs)
 		{
 			echo "<script>window.location='?cat=pimpinan&page=order'</script>";

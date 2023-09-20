@@ -40,7 +40,7 @@
       <div class="thumbnail">
 
         <div class="caption">
-          <h3>Laporan Permintaan Barang</h3>
+          <h3>Permintaan Barang</h3>
           <p>Pengajuan permintaan persediaan barang yang kosong atau belum tersedia</p>
           <p><a href="?cat=gudang&page=order" class="btn btn-primary">Masuk</a> </p>
         </div>

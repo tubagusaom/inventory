@@ -4,7 +4,7 @@
       <div class="thumbnail">
 
         <div class="caption">
-          <h3>Laporan Permintaan Obat</h3>
+          <h3>Permintaan Obat</h3>
           <p>Persetujuan permintaan persediaan obat yang kosong atau belum tersedia</p>
           <p><a href="?cat=pimpinan&page=order" class="btn btn-primary">Masuk</a> </p>
         </div>
