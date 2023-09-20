@@ -11,7 +11,7 @@
 
       <div class="loginwrapper">
           <div class="loginwrap zindex100 animate2 bounceInDown">
-          <h1 class="logintitletuliv"><span class="iconfa-lock"></span> <?=app_name()?> - <?=company_name()?><span class="subtitle">Please log in to get started.</span></h1>
+          <h1 class="logintitletuliv"><span class="iconfa-lock"></span> <?=app_name()?> - <?=base_url()?><span class="subtitle">Please log in to get started.</span></h1>
               <div class="loginwrapperinner">
                 <form id="loginform" action="index.php?login_attempt=1" method="post">
                     <p class="animate4 bounceIn"><input type="text" id="username" name="username" placeholder="Username" /></p>
