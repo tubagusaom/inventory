@@ -4,7 +4,7 @@
   $app_folder = 'pages';
   $app_folder   = str_replace("\n\r", ".", rtrim("\n\r\n\r/".$app_folder).'/');
 
-  $jalur_sistem = "system";
+  $jalur_sistem = "System";
   if (realpath($jalur_sistem) !== FALSE)
   {
     $jalur_sistem = realpath($jalur_sistem).'/';
