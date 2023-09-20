@@ -26,10 +26,10 @@ function base_url(){
     }
   }
 
-  return $base_url;
+  return $uriSegments[1];
 }
 
-// var_dump(base_url()); die();
+var_dump(base_url()); die();
 
 function logSesion($koneksi){
   login($koneksi);
