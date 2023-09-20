@@ -4,8 +4,8 @@
       <div class="thumbnail">
 
         <div class="caption">
-          <h3>Lemari Obat</h3>
-          <p>Halaman untuk menambah,mengubah dan menghapus data Lemari Obat</p>
+          <h3>Lemari Barang</h3>
+          <p>Halaman untuk menambah,mengubah dan menghapus data Etalase</p>
           <p><a href="?cat=gudang&page=lemari" class="btn btn-primary">Masuk</a> </p>
         </div>
       </div>
@@ -15,8 +15,8 @@
       <div class="thumbnail">
 
         <div class="caption">
-          <h3>Data Obat</h3>
-          <p>Halaman untuk menambah,mengubah dan menghapus data Obat</p>
+          <h3>Data Barang</h3>
+          <p>Halaman untuk menambah,mengubah dan menghapus data Barang</p>
           <p><a href="?cat=gudang&page=barang" class="btn btn-primary">Masuk</a> </p>
         </div>
       </div>
@@ -27,8 +27,8 @@
       <div class="thumbnail">
 
         <div class="caption">
-          <h3>Obat Masuk</h3>
-          <p>Menambahkan Obat ataupun menerima Obat untuk ditempatkan pada Gudang</p>
+          <h3>Barang Masuk</h3>
+          <p>Menambahkan Barang ataupun menerima Barang untuk ditempatkan pada Gudang</p>
           <p><a href="?cat=gudang&page=entry" class="btn btn-primary">Masuk</a> </p>
         </div>
       </div>
@@ -40,8 +40,8 @@
       <div class="thumbnail">
 
         <div class="caption">
-          <h3>Laporan Permintaan Obat</h3>
-          <p>Pengajuan permintaan persediaan obat yang kosong atau belum tersedia</p>
+          <h3>Laporan Permintaan Barang</h3>
+          <p>Pengajuan permintaan persediaan barang yang kosong atau belum tersedia</p>
           <p><a href="?cat=gudang&page=order" class="btn btn-primary">Masuk</a> </p>
         </div>
       </div>
@@ -51,8 +51,8 @@
       <div class="thumbnail">
 
         <div class="caption">
-          <h3>Laporan Stok Obat</h3>
-          <p>Halaman untuk mengelola laporan stok obat</p>
+          <h3>Laporan Stok Barang</h3>
+          <p>Halaman untuk mengelola laporan stok barang</p>
           <p><a href="?cat=gudang&page=stok" class="btn btn-primary">Masuk</a> </p>
         </div>
       </div>
@@ -62,8 +62,8 @@
       <div class="thumbnail">
 
         <div class="caption">
-          <h3>Laporan Obat Masuk dan Keluar</h3>
-          <p>Halaman untuk mengelola laporan obat masuk dan keluar</p>
+          <h3>Laporan Barang Masuk dan Keluar</h3>
+          <p>Halaman untuk mengelola laporan barang masuk dan keluar</p>
           <p><a href="?cat=gudang&page=monthreporting" class="btn btn-primary">Masuk</a> </p>
         </div>
       </div>

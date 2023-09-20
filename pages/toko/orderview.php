@@ -98,12 +98,12 @@ border-radius:3px;
 <thead >
   <tr>
     <td colspan="5" class="no_sort">
-			<h2>Data Permintaan Obat</h2>
+			<h2>Data Permintaan Barang</h2>
 		</td>
   </tr>
   <tr>
-    <th>Kode Obat</th>
-    <th>Nama Obat</th>
+    <th>Kode Barang</th>
+    <th>Nama Barang</th>
     <th>Status Permintaan</th>
     <th>&nbsp;</th>
     </tr>

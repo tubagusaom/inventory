@@ -74,10 +74,10 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
 
 	//jalankan query menampilkan data per blok $offset dan $per_hal
   $query = mysqli_query($koneksi, "SELECT
-    data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, jenis_obat.nama_jenis,
+    data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, lemari_obat.nama_lemari,
     data_persediaan.masuk, data_persediaan.keluar, data_persediaan.stok_tersedia
       FROM data_obat
-    LEFT JOIN jenis_obat ON data_obat.kode_lemari = jenis_obat.kode_lemari
+    LEFT JOIN lemari_obat ON data_obat.kode_lemari = lemari_obat.kode_lemari
     LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat WHERE data_obat.stts_obat = '1'
     GROUP BY data_obat.kode_obat LIMIT $offset,$per_hal");
 
@@ -91,7 +91,7 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
       <tr>
 
         <td width="17%">
-					Export To
+					Export To <?=date("M-Y") ?>
 					<a href='<?=base_url()."pages/web/export-excel-stok-barang.php" ?>' target="_blank">
 						<img src="img/excel.ico" border="1" width="32" height="32" alt="Tubagus Aom">
 					</a>
@@ -107,15 +107,15 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
 <thead >
   <tr>
     <td colspan="5" class="no_sort">
-			<h2>LAPORAN STOK OBAT</h2>
+			<h2>LAPORAN STOK BARANG</h2>
 		</td>
   </tr>
   <tr>
-    <th>Kode Obat</th>
-    <th>Nama Obat</th>
-    <th>jenis Obat</th>
-    <th>Obat Masuk</th>
-    <th>Obat Keluar</th>
+    <th>Kode Barang</th>
+    <th>Nama Barang</th>
+    <th>Kategori</th>
+    <th>Barang Masuk</th>
+    <th>Barang Keluar</th>
     <th>Stok Tersedia</th>
     </tr>
   </thead>
@@ -124,7 +124,7 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
 <tr >
     <td><?php echo $result['kode_obat']; ?></td>
     <td><?php echo $result['nama_obat']; ?></td>
-    <td><?php echo $result['nama_jenis']; ?></td>
+    <td><?php echo $result['nama_lemari']; ?></td>
     <td><?php echo $result['masuk']; ?></td>
     <td><?php echo $result['keluar']; ?></td>
     <td><?php echo $result['stok_tersedia']; ?></td>

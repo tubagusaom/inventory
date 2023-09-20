@@ -16,15 +16,16 @@
       </ul>
     </li>
     <li class="dropdown"><a href="#"><span class="icon-pencil"></span> Transaksi</a>
-      <ul <?= $_GET['page'] == 'entry' ? 'style="display:block;"' : '' ?>>
-        <li><a <?= $_GET['page'] == 'entry' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=gudang&page=entry">Obat Masuk</a></li>
+      <ul <?= $_GET['page'] == 'order' || $_GET['page'] == 'orderedit' || $_GET['page'] == 'entry' ? 'style="display:block;"' : '' ?>>
+        <li><a <?= $_GET['page'] == 'order' || $_GET['page'] == 'orderedit' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=gudang&page=order">Permintaan Barang</a></li>
+        <li><a <?= $_GET['page'] == 'entry' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=gudang&page=entry">Barang Masuk</a></li>
       </ul>
     </li>
     <li class="dropdown"><a href="#"><span class="icon-pencil"></span> Laporan</a>
-      <ul <?= $_GET['page'] == 'order' || $_GET['page'] == 'stok' || $_GET['page'] == 'monthreporting' ? 'style="display:block;"' : '' ?>>
-        <li><a <?= $_GET['page'] == 'order' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=gudang&page=order">Permintaan Obat</a></li>
-        <li><a <?= $_GET['page'] == 'stok' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=gudang&page=stok">Stok Obat</a></li>
-        <li><a <?= $_GET['page'] == 'monthreporting' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=gudang&page=monthreporting">Obat Masuk dan Keluar</a></li>
+      <ul <?= $_GET['page'] == 'stok' || $_GET['page'] == 'monthreporting' ? 'style="display:block;"' : '' ?>>
+        
+        <li><a <?= $_GET['page'] == 'stok' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=gudang&page=stok">Stok Barang</a></li>
+        <li><a <?= $_GET['page'] == 'monthreporting' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=gudang&page=monthreporting">Barang Masuk dan Keluar</a></li>
       </ul>
     </li>
     <?php
@@ -33,14 +34,14 @@
     <!--MENU toko-->
     <li class="dropdown"><a href="#"><span class="icon-th-list"></span> Transaksi</a>
       <ul <?= $_GET['page'] == 'order' || $_GET['page'] == 'sell' ? 'style="display:block;"' : '' ?>>
-        <li><a <?= $_GET['page'] == 'order' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=order">Permintaan Obat</a></li>
-        <li><a <?= $_GET['page'] == 'sell' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=sell">Obat Keluar</a></li>
+        <li><a <?= $_GET['page'] == 'order' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=order">Permintaan Barang</a></li>
+        <li><a <?= $_GET['page'] == 'sell' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=sell">Barang Keluar</a></li>
       </ul>
     </li>
     <li class="dropdown"><a href="#"><span class="icon-pencil"></span> Laporan</a>
       <ul <?= $_GET['page'] == 'stok' || $_GET['page'] == 'monthreporting' ? 'style="display:block;"' : '' ?>>
-        <li><a <?= $_GET['page'] == 'stok' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=stok">Stok Obat</a></li>
-        <li><a <?= $_GET['page'] == 'monthreporting' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=monthreporting">Obat Masuk dan Keluar</a></li>
+        <li><a <?= $_GET['page'] == 'stok' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=stok">Stok Barang</a></li>
+        <li><a <?= $_GET['page'] == 'monthreporting' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=monthreporting">Barang Masuk dan Keluar</a></li>
       </ul>
     </li>
 
@@ -50,9 +51,9 @@
 	?>
     <li class="dropdown"><a href="#"><span class="icon-pencil"></span> Laporan</a>
       <ul <?= $_GET['page'] == 'order' || $_GET['page'] == 'stok' || $_GET['page'] == 'monthreporting' ? 'style="display:block;"' : '' ?>>
-        <li><a <?= $_GET['page'] == 'order' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=pimpinan&page=order">Permintaan Obat</a></li>
-        <li><a <?= $_GET['page'] == 'stok' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=pimpinan&page=stok">Stok Obat</a></li>
-        <li><a <?= $_GET['page'] == 'monthreporting' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=pimpinan&page=monthreporting">Obat Masuk dan Keluar</a></li>
+        <li><a <?= $_GET['page'] == 'order' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=pimpinan&page=order">Permintaan Barang</a></li>
+        <li><a <?= $_GET['page'] == 'stok' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=pimpinan&page=stok">Stok Barang</a></li>
+        <li><a <?= $_GET['page'] == 'monthreporting' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=pimpinan&page=monthreporting">Barang Masuk dan Keluar</a></li>
       </ul>
     </li>
      <!--MENU ADMIN-->

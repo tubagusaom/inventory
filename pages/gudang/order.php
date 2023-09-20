@@ -61,19 +61,19 @@ border-radius:3px;
 	$reload="?cat=gudang&page=barang";
 	//Cari berapa banyak jumlah data*/
 
-	$count_query   = mysql_query("SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
+	$count_query   = mysqli_query($koneksi, "SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
 FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat");
 	if($count_query === FALSE) {
-    die(mysql_error());
+    die(mysqli_error());
 	}
-	$row     = mysql_fetch_array($count_query);
+	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data
 
 	$total_hals = ceil($numrows/$per_hal);
 
 
 	//jalankan query menampilkan data per blok $offset dan $per_hal
-	$query = mysql_query("SELECT
+	$query = mysqli_query($koneksi, "SELECT
 		data_obat.kode_obat, data_obat.nama_obat, data_obat.stts_obat, lemari_obat.nama_lemari
 			FROM data_obat
 		    LEFT JOIN lemari_obat ON data_obat.kode_lemari = lemari_obat.kode_lemari WHERE data_obat.stts_obat NOT LIKE '1'
@@ -85,20 +85,20 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
 <thead >
   <tr>
     <td colspan="5" class="no_sort">
-			<h2>Data Permintaan Obat</h2>
+			<h2>Data Permintaan Barang</h2>
 		</td>
   </tr>
   <tr>
-    <th>Kode Obat</th>
-    <th>Nama Obat</th>
-    <th>Lemari Obat</th>
+    <th>Kode Barang</th>
+    <th>Nama Barang</th>
+    <th>Lemari Barang</th>
     <th>Status Permintaan</th>
     <th>&nbsp;</th>
     </tr>
   </thead>
 
 <?php
-  while($result = mysql_fetch_array($query)){
+  while($result = mysqli_fetch_array($query)){
     if ($result['stts_obat'] == "0") {
       $status_obat="Permintaan Baru";
     }else if ($result['stts_obat'] == "2") {
@@ -126,7 +126,7 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
 if(isset($_GET['del']))
 {
 	$ids=$_GET['id'];
-	$ff=mysql_query("Delete from data_obat Where sha1(kode_obat)='".$ids."'");
+	$ff=mysqli_query($koneksi, "Delete from data_obat Where sha1(kode_obat)='".$ids."'");
 	if($ff)
 	{
 		echo "<script>window.location='?cat=gudang&page=order'</script>";
