@@ -58,7 +58,7 @@ border-radius:3px;
 	$per_hal = 5; //berapa banyak blok
 	$adjacents  = 5;
 	$offset = ($hal - 1) * $per_hal;
-	$reload="?cat=gudang&page=barang";
+	$reload="?cat=admin&page=barang";
 	//Cari berapa banyak jumlah data*/
 
 	$count_query   = mysqli_query($koneksi, "SELECT
@@ -66,52 +66,47 @@ border-radius:3px;
 		data_obat.kode_obat,
 		data_obat.nama_obat,
 		data_obat.kode_lemari,
-		data_persediaan.stok_tersedia
-			FROM data_obat
-			LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat" );
-
+		lemari_obat.nama_lemari
+		FROM data_obat
+		-- LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat
+		LEFT JOIN lemari_obat ON data_obat.kode_lemari = lemari_obat.kode_lemari
+		WHERE data_obat.stts_obat = '1'");
 	if($count_query === FALSE) {
-    	die(mysqli_error());
+    die(mysqli_error());
 	}
-	
 	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data
 
 	$total_hals = ceil($numrows/$per_hal);
 
 
-	// jalankan query menampilkan data per blok $offset dan $per_hal
+	//jalankan query menampilkan data per blok $offset dan $per_hal
 	$query = mysqli_query($koneksi, "SELECT
 		data_obat.kode_obat,
 		data_obat.nama_obat,
 		data_obat.kode_lemari,
-		-- data_obat.keterangan_barang,
+		data_obat.keterangan_barang,
 		lemari_obat.nama_lemari
 			FROM data_obat
-			LEFT JOIN lemari_obat ON data_obat.kode_lemari = lemari_obat.kode_lemari
-				
-			WHERE data_obat.stts_obat = '1'
-			-- LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat
-			ORDER BY data_obat.kode_lemari
-			LIMIT $offset,$per_hal");
-
-	// echo $query;
+				LEFT JOIN lemari_obat ON data_obat.kode_lemari = lemari_obat.kode_lemari
+				WHERE data_obat.stts_obat = '1'
+		-- LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat
+		ORDER BY data_obat.kode_lemari LIMIT $offset,$per_hal");
 
 ?>
-
 <table style="margin-top:10px" width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive table table-striped table-bordered">
 <thead >
   <tr>
     <td colspan="5" class="no_sort">
-		<h2>DATA BARANG</h2>
-	</td>
+			<h2>DATA BARANG</h2>
+		</td>
   </tr>
   <tr>
-	<th width="5%" style="text-align:center; background:#ece8e8">No</th>
+		<th width="5%" style="text-align:center; background:#ece8e8">No</th>
     <th style="background:#ece8e8">Kode Barang</th>
-    <th style="background:#ece8e8">Kategori</th>
     <th style="background:#ece8e8">Nama Barang</th>
-    <th style="background:#ece8e8">Keterangan</th>
+    <th style="background:#ece8e8">Kategori</th>
+    <th style="background:#ece8e8">Catatan</th>
     <!-- <th>Stok Tersedia</th> -->
     <td width="20%" style="text-align:center; background:#ece8e8">-</th>
     </tr>
@@ -119,26 +114,22 @@ border-radius:3px;
 
 <?php
 	$no=1;
-	while($result = mysqli_fetch_array($query)) {
+	while($result = mysqli_fetch_array($query)){
 ?>
-
 <tr >
-	<td width="5%" style="text-align:center"><?=$no?>.</td>
+		<td width="5%" style="text-align:center"><?=$no?>.</td>
     <td><?php echo $result['kode_obat']; ?></td>
-    <td><?php echo $result['nama_lemari']; ?></td>
     <td><?php echo $result['nama_obat']; ?></td>
+    <td><?php echo $result['nama_lemari']; ?></td>
     <td><?php echo $result['keterangan_barang']; ?></td>
     <!-- <td><?php echo $result['stok_tersedia']; ?></td> -->
 
     <td style="text-align: center">
-			<a href="?cat=finance&page=barangedit&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom">Edit</a> -
-			<a href="?cat=finance&page=barang&del=1&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom" onclick="return confirm('apakah anda yakin hapus?')">Hapus</a>
+			<a href="?cat=admin&page=barangedit&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom">Edit</a> -
+			<a href="?cat=admin&page=barang&del=1&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom" onclick="return confirm('apakah anda yakin hapus?')">Hapus</a>
 		</td>
   </tr>
-
-<?php
-	$no++;}
-?>
+<?php $no++;} ?>
 
 </table>
 <?php

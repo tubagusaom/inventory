@@ -11,27 +11,27 @@ $sql_kode = mysqli_query($koneksi, "SELECT kode_obat FROM data_obat order by kod
 	$crop=substr($data_kode[0],8);
 
 	if ($crop==0){
-		$urutan="TLV-".date("y").date("m")."001";
+		$urutan="KDB-".date("y").date("m")."001";
 	}
 
 	elseif ($crop<9){
 		$jum=$crop+1;
-		$urutan="TLV-".date("y").date("m")."00".$jum;}
+		$urutan="KDB-".date("y").date("m")."00".$jum;}
 
 	elseif ($crop<99){
 		$jum=$crop+1;
-		$urutan="TLV-".date("y").date("m")."0".$jum;}
+		$urutan="KDB-".date("y").date("m")."0".$jum;}
 
 	elseif ($crop<999){
 		$jum=$crop+1;
-		$urutan="TLV-".date("y").date("m").$jum;}
+		$urutan="KDB-".date("y").date("m").$jum;}
 
 	elseif ($crop>=999){
-		$urutan="TLV".date("y").date("m")."001";
+		$urutan="KDB-".date("y").date("m")."001";
 		echo "<script>alert('SILAHKAN HUBUNGI tubagus.aom.swk@gmail.com'); location.href='dashboard.php?cat=web&page=logout'</script>";
 	};
 ?>
-<form name="form1" method="post" action="?cat=tuliv&page=barang&act=1">
+<form name="form1" method="post" action="?cat=admin&page=barang&act=1">
 
   <div class="table-responsive">
     <table class=" table-aom">
@@ -60,7 +60,7 @@ $sql_kode = mysqli_query($koneksi, "SELECT kode_obat FROM data_obat order by kod
         </td>
       </tr>
       <tr>
-        <td><label>Keterangan</label></td>
+        <td><label>Catatan</label></td>
         <td width="50%">
           <textarea name="keterangan_barang"></textarea>
         </td>
@@ -91,7 +91,7 @@ if(isset($_GET['act']))
 	$rs=mysqli_query($koneksi, "Insert into data_obat (`kode_obat`,`nama_obat`,`kode_lemari`,`stts_obat`,`keterangan_barang`) values ('".$_POST['kode_obat']."','".$_POST['namaobat']."','".$_POST['kode_lemari']."','1','".$_POST['keterangan_barang']."')") or die(mysql_error());
 	if($rs)
 	{
-		echo "<script>window.location='?cat=tuliv&page=barang'</script>";
+		echo "<script>window.location='?cat=admin&page=barang'</script>";
 	}
 }
 ?>

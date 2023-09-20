@@ -2,8 +2,8 @@
 ob_start();
 if(isset($_GET['id']))
 {
-	$rs=mysql_query("Select * from data_obat where sha1(kode_obat)='".$_GET['id']."'");
-	$row=mysql_fetch_array($rs);
+	$rs=mysqli_query($koneksi , "Select * from data_obat where sha1(kode_obat)='".$_GET['id']."'");
+	$row=mysqli_fetch_array($rs);
 ?>
 <form name="form1" method="post" action="?cat=gudang&page=barangedit&id=<?php echo $_GET['id']; ?>&edit=1">
 
@@ -18,25 +18,31 @@ if(isset($_GET['id']))
 				<td>
 					<select name="kode_lemari" id="kode_lemari" >
 							<?php
-								$queryx = mysql_query("SELECT * FROM lemari_obat WHERE kode_lemari = '$row[kode_lemari]'");
+								$queryx = mysqli_query($koneksi , "SELECT * FROM lemari_obat WHERE kode_lemari = '$row[kode_lemari]'");
 								 if($queryx === FALSE) {
-									 die(mysql_error());
+									 die(mysqli_error());
 								 }
-								 $datax=mysql_fetch_array($queryx);
+								 $datax=mysqli_fetch_array($queryx);
 
 								 echo "<option value='$datax[0]'>$datax[1]</option>";
 
-								 $queryy = mysql_query("SELECT * FROM lemari_obat WHERE kode_lemari NOT LIKE '$row[kode_lemari]'");
+								 $queryy = mysqli_query("SELECT * FROM lemari_obat WHERE kode_lemari NOT LIKE '$row[kode_lemari]'");
  								 if($queryy === FALSE) {
- 									 die(mysql_error());
+ 									 die(mysqli_error());
  								 }
-								while($datay=mysql_fetch_array($queryy)){
+								while($datay=mysqli_fetch_array($queryy)){
 									echo "<option value='$datay[0]'>$datay[1]</option>";
 								}
 							?>
 						</select>
 				</td>
 			</tr>
+			<tr>
+        <td><label>Catatan</label></td>
+        <td width="50%">
+          <textarea name="keterangan_barang"><?=$row['keterangan_barang'] ?></textarea>
+        </td>
+      </tr>
 			<tr>
 				<td colspan="2">
 					<input type="submit" class="btn btn-primary" name="button" id="button" value="Ubah" style="float:right;">
@@ -54,7 +60,7 @@ ob_end_flush();
 ?>
 <?php
 if(isset($_GET['edit'])){
-	$rs=mysql_query("Update data_obat SET nama_obat='".$_POST['nama_obat']."', kode_lemari='".$_POST['kode_lemari']."' Where sha1(kode_obat)='".$_GET['id']."' ");
+	$rs=mysqli_query($koneksi , "Update data_obat SET nama_obat='".$_POST['nama_obat']."', kode_lemari='".$_POST['kode_lemari']."', keterangan_barang='".$_POST['keterangan_barang']."' Where sha1(kode_obat)='".$_GET['id']."' ");
 	if($rs){
 		echo "<script>window.location='?cat=gudang&page=barang'</script>";
 	}

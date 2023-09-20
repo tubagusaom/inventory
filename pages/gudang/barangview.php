@@ -6,7 +6,7 @@ font:bold 11px/30px arial, serif;
 }
 .pagin * {
 padding: 2px 6px;
-color:#0A7EC5!important;
+color:#0A7EC5;
 margin: 2px;
 border-radius:3px;
 }
@@ -61,8 +61,16 @@ border-radius:3px;
 	$reload="?cat=gudang&page=barang";
 	//Cari berapa banyak jumlah data*/
 
-	$count_query   = mysqli_query($koneksi, "SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
-		FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat" );
+	$count_query   = mysqli_query($koneksi, "SELECT
+		COUNT(data_obat.kode_obat) AS numrows,
+		data_obat.kode_obat,
+		data_obat.nama_obat,
+		data_obat.kode_lemari,
+		lemari_obat.nama_lemari
+		FROM data_obat
+		-- LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat
+		LEFT JOIN lemari_obat ON data_obat.kode_lemari = lemari_obat.kode_lemari
+		WHERE data_obat.stts_obat = '1'");
 	if($count_query === FALSE) {
     die(mysqli_error());
 	}
@@ -77,7 +85,7 @@ border-radius:3px;
 		data_obat.kode_obat,
 		data_obat.nama_obat,
 		data_obat.kode_lemari,
-		-- data_obat.keterangan_barang,
+		data_obat.keterangan_barang,
 		lemari_obat.nama_lemari
 			FROM data_obat
 				LEFT JOIN lemari_obat ON data_obat.kode_lemari = lemari_obat.kode_lemari
@@ -96,9 +104,9 @@ border-radius:3px;
   <tr>
 		<th width="5%" style="text-align:center; background:#ece8e8">No</th>
     <th style="background:#ece8e8">Kode Barang</th>
-    <th style="background:#ece8e8">Kategori</th>
     <th style="background:#ece8e8">Nama Barang</th>
-    <th style="background:#ece8e8">Keterangan</th>
+    <th style="background:#ece8e8">Kategori</th>
+    <th style="background:#ece8e8">Catatan</th>
     <!-- <th>Stok Tersedia</th> -->
     <td width="20%" style="text-align:center; background:#ece8e8">-</th>
     </tr>
@@ -111,8 +119,8 @@ border-radius:3px;
 <tr >
 		<td width="5%" style="text-align:center"><?=$no?>.</td>
     <td><?php echo $result['kode_obat']; ?></td>
-    <td><?php echo $result['nama_lemari']; ?></td>
     <td><?php echo $result['nama_obat']; ?></td>
+    <td><?php echo $result['nama_lemari']; ?></td>
     <td><?php echo $result['keterangan_barang']; ?></td>
     <!-- <td><?php echo $result['stok_tersedia']; ?></td> -->
 

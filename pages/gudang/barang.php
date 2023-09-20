@@ -11,23 +11,23 @@ $sql_kode = mysqli_query($koneksi, "SELECT kode_obat FROM data_obat order by kod
 	$crop=substr($data_kode[0],8);
 
 	if ($crop==0){
-		$urutan="TLV-".date("y").date("m")."001";
+		$urutan="KDB-".date("y").date("m")."001";
 	}
 
 	elseif ($crop<9){
 		$jum=$crop+1;
-		$urutan="TLV-".date("y").date("m")."00".$jum;}
+		$urutan="KDB-".date("y").date("m")."00".$jum;}
 
 	elseif ($crop<99){
 		$jum=$crop+1;
-		$urutan="TLV-".date("y").date("m")."0".$jum;}
+		$urutan="KDB-".date("y").date("m")."0".$jum;}
 
 	elseif ($crop<999){
 		$jum=$crop+1;
-		$urutan="TLV-".date("y").date("m").$jum;}
+		$urutan="KDB-".date("y").date("m").$jum;}
 
 	elseif ($crop>=999){
-		$urutan="EDWS".date("y").date("m")."001";
+		$urutan="KDB".date("y").date("m")."001";
 		echo "<script>alert('SILAHKAN HUBUNGI tubagus.aom.swk@gmail.com'); location.href='dashboard.php?cat=web&page=logout'</script>";
 	};
 ?>
@@ -60,7 +60,7 @@ $sql_kode = mysqli_query($koneksi, "SELECT kode_obat FROM data_obat order by kod
         </td>
       </tr>
       <tr>
-        <td><label>Keterangan</label></td>
+        <td><label>Catatan</label></td>
         <td width="50%">
           <textarea name="keterangan_barang"></textarea>
         </td>
