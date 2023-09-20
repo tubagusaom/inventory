@@ -29,7 +29,7 @@ function base_url(){
   return $base_url;
 }
 
-var_dump(base_url()); die();
+// var_dump(base_url()); die();
 
 function logSesion($koneksi){
   login($koneksi);
