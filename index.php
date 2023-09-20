@@ -18,7 +18,7 @@
   } else {
       if (!is_dir(SYSDIR . '/')) {
           // exit("Jalur folder aplikasi Anda tidak disetel dengan benar. Silakan buka file berikut dan perbaiki ini: " . SELF);
-          exit("Jalur folder aplikasi Anda tidak disetel dengan benar. " . SYSDIR );
+          exit("Jalur folder aplikasi Anda tidak disetel dengan benar. " );
       }
 
       define('APPPATH', SYSDIR . $app_folder );

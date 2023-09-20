@@ -1,7 +1,7 @@
 <?php
 	error_reporting(1);
 
-	$env = 'lokal'; // lokal atau online
+	$env = 'online'; // lokal atau online
 
 	if($env=='lokal'){
 		$host	 		= "localhost";
@@ -10,11 +10,11 @@
 		$dabname		= "inventory_db";
 		$base			= "http://localhost/tera_byte/project/inventory/";
 	}else{
-		$host	 		= "localhost";
-		$user		 	= "u240976257_berta";
-		$pass	 		= "berta12345";
-		$dabname 		= "u240976257_sb";
-		$base			= "http://ebe.esy.es/";
+		$host	 		= "151.106.119.249";
+		$user		 	= "deelabs_terabyte";
+		$pass	 		= "bismIll@h";
+		$dabname 		= "deelabs_inventory_terabyte_db";
+		$base			= "https://inventory.itconsultant.biz.id";
 	} 
 
 	// $conn = mysql_connect( $host, $user, $pass) or die('Could not connect to mysql server.' );
