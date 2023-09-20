@@ -7,7 +7,7 @@ font:bold 11px/30px arial, serif;
 }
 .pagin * {
 padding: 2px 6px;
-color:#0A7EC5!important;
+color:#0A7EC5;
 margin: 2px;
 border-radius:3px;
 }
@@ -49,7 +49,7 @@ border-radius:3px;
 }
 
 </style>
-<h2>Data Kategori Barang</h2>
+<h2>Data Etalase</h2>
 <?php
 	/* Koneksi database*/
 	include 'pages/web/paging.php'; //include pagination file

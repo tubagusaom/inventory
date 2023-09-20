@@ -5,7 +5,7 @@ ob_start();
   <div class="table-responsive">
     <table class=" table-aom">
       <tr>
-        <td><label>Kategori Barang</label></td>
+        <td><label>Nama Etalase</label></td>
         <td><input type="text" name="nama_lemari" id="nama_lemari" required></td>
       </tr>
       <tr>

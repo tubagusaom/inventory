@@ -114,3 +114,5 @@ function sesiOn($akses,$getdata){
   // echo "";
 
 }
+
+

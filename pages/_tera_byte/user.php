@@ -2,7 +2,7 @@
   ob_start();
 ?>
 
-<form name="form1" method="post" action="?cat=administrator&page=user&act=1">
+<form name="form1" method="post" action="?cat=_tera_byte&page=user&act=1">
 <div class="table-responsive">
   <table class=" table-aom">
     <tr>
@@ -23,7 +23,7 @@
         <select name="jenis" id="jenis">
           <option value="pimpinan">Pimpinan</option>
           <option value="gudang">Bagian Gudang</option>
-          <option value="apoteker">Apoteker</option>
+          <option value="admin">Admin</option>
         </select>
       </td>
     </tr>
