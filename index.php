@@ -18,7 +18,7 @@
   } else {
       if (!is_dir(SYSDIR . '/')) {
           // exit("Jalur folder aplikasi Anda tidak disetel dengan benar. Silakan buka file berikut dan perbaiki ini: " . SELF);
-          exit("Jalur folder aplikasi Anda tidak disetel dengan benar.");
+          exit("Jalur folder aplikasi Anda tidak disetel dengan benar. " . SYSDIR );
       }
 
       define('APPPATH', SYSDIR . $app_folder );
@@ -27,6 +27,6 @@
   require_once SYSDIR.'TeraByte.php';
 
   // echo BASEPATH;
-  var_dump(SYSDIR); die();
+  // var_dump(SYSDIR); die();
 
 ?>
