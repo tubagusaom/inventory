@@ -61,22 +61,35 @@ border-radius:3px;
 	$reload="?cat=gudang&page=barang";
 	//Cari berapa banyak jumlah data*/
 
-	$count_query   = mysqli_query($koneksi, "SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
-FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat");
+	$count_query   = mysqli_query($koneksi, "SELECT
+		COUNT(data_obat.kode_obat) AS numrows,
+		data_obat.kode_obat,
+		data_obat.nama_obat,
+		data_obat.kode_lemari
+			FROM data_obat
+			LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat
+			WHERE data_obat.stts_obat NOT LIKE '1'
+	");
+
 	if($count_query === FALSE) {
-    die(mysqli_error());
+    	die(mysqli_error());
 	}
+
 	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data
 
 	$total_hals = ceil($numrows/$per_hal);
 
+	// var_dump($numrows); die();
 
 	//jalankan query menampilkan data per blok $offset dan $per_hal
 	$query = mysqli_query($koneksi, "SELECT
-		data_obat.kode_obat, data_obat.nama_obat, data_obat.stts_obat, jenis_obat.nama_jenis
+		data_obat.kode_obat,
+		data_obat.nama_obat,
+		data_obat.stts_obat
 			FROM data_obat
-		    LEFT JOIN jenis_obat ON data_obat.kode_lemari = jenis_obat.kode_lemari WHERE data_obat.stts_obat NOT LIKE '1'
+		    -- LEFT JOIN jenis_obat ON data_obat.kode_lemari = jenis_obat.kode_lemari
+			WHERE data_obat.stts_obat NOT LIKE '1'
 		-- LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat
 		GROUP BY data_obat.kode_obat LIMIT $offset,$per_hal");
 
