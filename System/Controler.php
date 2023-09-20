@@ -26,7 +26,7 @@ function base_url(){
     }
   }
 
-  return $uriSegments;
+  return $base_url;
 }
 
 var_dump(base_url()); die();
