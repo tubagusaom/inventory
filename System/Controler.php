@@ -20,9 +20,9 @@ function base_url(){
     // $segmen = $this->segmen_url();
     // $segmen = $uriSegments;
     if ($uriSegments[1] == '') {
-      $base_url = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $base_);
+      $base_url = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $base_ . '/');
     }else {
-      $base_url = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $base_ . '/home'.'/');
+      $base_url = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $base_ . '/home' . '/');
     }
   }
 
