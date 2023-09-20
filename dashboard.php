@@ -2,7 +2,7 @@
 error_reporting(0);
 session_start();
 if (!isset($_SESSION['login_hash'])) {
-    echo "<script>window.location='index.php'</script>";
+    echo "<script>window.location='login'</script>";
 }
 require_once("_db.php");
 require_once("_app.php");
