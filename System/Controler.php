@@ -18,8 +18,8 @@ function base_url(){
     $base_url = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
   }else{
     // $segmen = $this->segmen_url();
-    $segmen = $uriSegments;
-    if ($segmen[1] == '') {
+    // $segmen = $uriSegments;
+    if ($uriSegments[1] == '') {
       $base_url = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $base_);
     }else {
       $base_url = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $base_ . '/home'.'/');
@@ -29,7 +29,7 @@ function base_url(){
   return $base_url;
 }
 
-var_dump(base_url()); die();
+// var_dump(base_url()); die();
 
 function logSesion($koneksi){
   login($koneksi);
