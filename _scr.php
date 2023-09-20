@@ -1,6 +1,6 @@
 
-<link rel="stylesheet" href="css/style.default.css" type="text/css" />
-<link rel="stylesheet" href="prettify/prettify.css" type="text/css" />
+<link rel="stylesheet" href="<?=base_url()?>css/style.default.css" type="text/css" />
+<link rel="stylesheet" href="<?=base_url()?>prettify/prettify.css" type="text/css" />
 
 <script type="text/javascript" src="prettify/prettify.js"></script>
 <script type="text/javascript" src="js/slider.js"></script>

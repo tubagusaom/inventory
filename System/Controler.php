@@ -1,35 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('Tidak ada akses skrip langsung yang diizinkan');
 
 require_once BASEPATH.("_db".EXT);
+require_once BASEPATH.("_app".EXT);
 
 $logSesion=logSesion($koneksi,'');
 
 function connectdb($logSesion=FALSE){
   return $logSesion;
 }
-
-function base_url(){
-  $base_ = (empty($_SERVER['HTTPS']) OR strtolower($_SERVER['HTTPS']) === 'off') ? 'http' : 'https';
-  $base_ .= '://'. $_SERVER['HTTP_HOST'];
-
-  $uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-
-  if ($_SERVER['HTTP_HOST'] == "localhost") {
-    $base_url = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
-  }else{
-    // $segmen = $this->segmen_url();
-    // $segmen = $uriSegments;
-    if ($uriSegments[1] == '') {
-      $base_url = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $base_ . '/');
-    }else {
-      $base_url = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $base_ . '/home' . '/');
-    }
-  }
-
-  return $base_url;
-}
-
-// var_dump(base_url()); die();
 
 function logSesion($koneksi){
   login($koneksi);
