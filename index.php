@@ -25,7 +25,8 @@
   }
 
   require_once SYSDIR.'TeraByte.php';
-  
-  echo SYSDIR;
+
+  // echo BASEPATH;
+  var_dump(SYSDIR); die();
 
 ?>
