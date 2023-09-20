@@ -61,19 +61,19 @@ border-radius:3px;
 	$reload="?cat=gudang&page=barang";
 	//Cari berapa banyak jumlah data*/
 
-	$count_query   = mysql_query("SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
+	$count_query   = mysqli_query($koneksi, "SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
 FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat");
 	if($count_query === FALSE) {
-    die(mysql_error());
+    die(mysqli_error());
 	}
-	$row     = mysql_fetch_array($count_query);
+	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data
 
 	$total_hals = ceil($numrows/$per_hal);
 
 
 	//jalankan query menampilkan data per blok $offset dan $per_hal
-  $query = mysql_query("SELECT
+  $query = mysqli_query($koneksi, "SELECT
     data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, jenis_obat.nama_jenis,
     data_persediaan.masuk, data_persediaan.keluar, data_persediaan.stok_tersedia
       FROM data_obat
@@ -92,7 +92,7 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
 
         <td width="17%">
 					Export To
-					<a href='<?=$baseurl."pages/web/export-excel-stok-barang.php" ?>' target="_blank">
+					<a href='<?=base_url()."pages/web/export-excel-stok-barang.php" ?>' target="_blank">
 						<img src="img/excel.ico" border="1" width="32" height="32" alt="Tubagus Aom">
 					</a>
 				</td>
@@ -120,7 +120,7 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
     </tr>
   </thead>
 
-<?php while($result = mysql_fetch_array($query)){ ?>
+<?php while($result = mysqli_fetch_array($query)){ ?>
 <tr >
     <td><?php echo $result['kode_obat']; ?></td>
     <td><?php echo $result['nama_obat']; ?></td>

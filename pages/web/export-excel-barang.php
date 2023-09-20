@@ -17,12 +17,12 @@ include("../../_db.php");
 	$tg2 = (isset($_REQUEST['tgl2']) && !empty($_REQUEST['tgl2']))?$_REQUEST['tgl2']:"";
 	$fil = (isset($_REQUEST['field']) && !empty($_REQUEST['field']))?$_REQUEST['field']:"";
 
-	$result=mysql_query("SELECT obat_".$fil.".tgl, obat_".$fil.".kode_obat, data_obat.nama_obat, data_obat.kode_lemari, lemari_obat.nama_lemari, obat_".$fil.".jumlah, user_login.*
+	$result=mysqli_query($koneksi, "SELECT obat_".$fil.".tgl, obat_".$fil.".kode_obat, data_obat.nama_obat, data_obat.kode_lemari, lemari_obat.nama_lemari, obat_".$fil.".jumlah, user_login.*
 		FROM obat_".$fil."
 			LEFT JOIN data_obat ON obat_".$fil.".kode_obat = data_obat.kode_obat
 			LEFT JOIN lemari_obat ON data_obat.kode_lemari = lemari_obat.nama_lemari
 			LEFT JOIN user_login ON obat_".$fil.".username = user_login.username
-			Where tgl BETWEEN '".$tg1."' AND '".$tg2."' GROUP BY ID_".$fil."") or die("Couldn't execute query:<br>" . mysql_error(). "<br>" . mysql_errno());;
+			Where tgl BETWEEN '".$tg1."' AND '".$tg2."' GROUP BY ID_".$fil."") or die("Couldn't execute query:<br>" . mysqli_error(). "<br>" . mysqli_errno());;
 
 $filename="Laporan-Obat-$fil-$tg1-$tg1";
 $file_ending = "xls";
@@ -52,7 +52,7 @@ header("Expires: 0");
 <table border="1" style="width:100%">
 		<tr>
 			<th colspan="7" align="center">
-				<b style="font-size:20px;">LAPORAN BARANG <?=$jenis?> "TULIV"</b> <br>
+				<b style="font-size:20px;">LAPORAN BARANG <?=$jenis?> "___"</b> <br>
 				<font>tanggal <?="$A-$b-$c"; ?> s/d <?="$d-$e-$f"; ?></font>
 			</th>
 		</tr>
@@ -67,7 +67,7 @@ header("Expires: 0");
     </tr>
 
 		<?php
-		while($row = mysql_fetch_array($result)) {
+		while($row = mysqli_fetch_array($result)) {
 			$g=substr($row['tgl'],8);
 			$h=substr($row['tgl'],5,2);
 			$i=substr($row['tgl'],0,4);

@@ -10,7 +10,7 @@
       </tr>
       <tr>
         <td><label>Kode Barang</label></td>
-        <td><input type="text" name="kodeobat" class="full-width" id="kodeobat" placeholder="Pilih Barang.."  onClick="window.open('<?php echo $baseurl; ?>pages/web/viewbarang.php','popuppage','width=700,toolbar=0,resizable=0,scrollbars=no,height=400,top=100,left=100');" required></td>
+        <td><input type="text" name="kodeobat" class="full-width" id="kodeobat" placeholder="Pilih Barang.."  onClick="window.open('<?=base_url();?>pages/web/viewbarang.php','popuppage','width=700,toolbar=0,resizable=0,scrollbars=no,height=400,top=100,left=100');" required></td>
       </tr>
       <tr>
         <td><label>Nama Barang</label></td>

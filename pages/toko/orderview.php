@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../css/style.default.css" type="text/css">
+<link rel="stylesheet" href="<?=base_url()?>css/style.default.css" type="text/css">
 <style>
 .pagin {
 padding: 10px 0;
@@ -61,19 +61,19 @@ border-radius:3px;
 	$reload="?cat=gudang&page=barang";
 	//Cari berapa banyak jumlah data*/
 
-	$count_query   = mysql_query("SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
+	$count_query   = mysqli_query($koneksi, "SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
 FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat");
 	if($count_query === FALSE) {
-    die(mysql_error());
+    die(mysqli_error());
 	}
-	$row     = mysql_fetch_array($count_query);
+	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data
 
 	$total_hals = ceil($numrows/$per_hal);
 
 
 	//jalankan query menampilkan data per blok $offset dan $per_hal
-	$query = mysql_query("SELECT
+	$query = mysqli_query($koneksi, "SELECT
 		data_obat.kode_obat, data_obat.nama_obat, data_obat.stts_obat, jenis_obat.nama_jenis
 			FROM data_obat
 		    LEFT JOIN jenis_obat ON data_obat.kode_lemari = jenis_obat.kode_lemari WHERE data_obat.stts_obat NOT LIKE '1'
@@ -97,7 +97,7 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
   </thead>
 
 <?php
-  while($result = mysql_fetch_array($query)){
+  while($result = mysqli_fetch_array($query)){
     if ($result['stts_obat'] == "0") {
       $status_obat="Permintaan Baru";
     }else if ($result['stts_obat'] == "2") {
@@ -114,8 +114,8 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
     <?php if ($result['stts_obat'] == "0") { ?>
 
     <td>
-			<a href="?cat=apoteker&page=ordergedit&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom">Edit</a> -
-			<a href="?cat=apoteker&page=order&del=1&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom" onclick="return confirm('apakah anda yakin hapus?')">Hapus</a>
+			<a href="?cat=toko&page=ordergedit&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom">Edit</a> -
+			<a href="?cat=toko&page=order&del=1&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom" onclick="return confirm('apakah anda yakin hapus?')">Hapus</a>
 		</td>
 
 	<?php }else { echo "<td>-</td>";} ?>

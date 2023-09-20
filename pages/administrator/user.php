@@ -22,10 +22,11 @@ ob_start();
     <tr>
       <td><label>Jenis Login</label></td>
       <td>
-        <select name="jenis" id="jenis">
+      <select name="jenis" id="jenis">
+          <option value="toko">Toko</option>
+          <option value="gudang">Gudang</option>
+          <option value="admin">Admin</option>
           <option value="pimpinan">Pimpinan</option>
-          <option value="gudang">Bagian Gudang</option>
-          <option value="apoteker">Apoteker</option>
         </select>
       </td>
     </tr>

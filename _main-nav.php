@@ -28,19 +28,19 @@
       </ul>
     </li>
     <?php
-	}elseif($_SESSION['login_hash']=="apoteker"){
+	}elseif($_SESSION['login_hash']=="toko"){
 	?>
-    <!--MENU apoteker-->
+    <!--MENU toko-->
     <li class="dropdown"><a href="#"><span class="icon-th-list"></span> Transaksi</a>
       <ul <?= $_GET['page'] == 'order' || $_GET['page'] == 'sell' ? 'style="display:block;"' : '' ?>>
-        <li><a <?= $_GET['page'] == 'order' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=apoteker&page=order">Permintaan Obat</a></li>
-        <li><a <?= $_GET['page'] == 'sell' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=apoteker&page=sell">Obat Keluar</a></li>
+        <li><a <?= $_GET['page'] == 'order' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=order">Permintaan Obat</a></li>
+        <li><a <?= $_GET['page'] == 'sell' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=sell">Obat Keluar</a></li>
       </ul>
     </li>
     <li class="dropdown"><a href="#"><span class="icon-pencil"></span> Laporan</a>
       <ul <?= $_GET['page'] == 'stok' || $_GET['page'] == 'monthreporting' ? 'style="display:block;"' : '' ?>>
-        <li><a <?= $_GET['page'] == 'stok' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=apoteker&page=stok">Stok Obat</a></li>
-        <li><a <?= $_GET['page'] == 'monthreporting' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=apoteker&page=monthreporting">Obat Masuk dan Keluar</a></li>
+        <li><a <?= $_GET['page'] == 'stok' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=stok">Stok Obat</a></li>
+        <li><a <?= $_GET['page'] == 'monthreporting' ? 'style="font-weight:bold; color:#634927"' : '' ?> href="?cat=toko&page=monthreporting">Obat Masuk dan Keluar</a></li>
       </ul>
     </li>
 

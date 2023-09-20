@@ -61,19 +61,19 @@ border-radius:3px;
 	$reload="?cat=gudang&page=barang";
 	//Cari berapa banyak jumlah data*/
 
-	$count_query   = mysql_query("SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
+	$count_query   = mysqli_query($koneksi, "SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
 FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat");
 	if($count_query === FALSE) {
     die(mysql_error());
 	}
-	$row     = mysql_fetch_array($count_query);
+	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data
 
 	$total_hals = ceil($numrows/$per_hal);
 
 
 	//jalankan query menampilkan data per blok $offset dan $per_hal
-  $query = mysql_query("SELECT
+  $query = mysqli_query($koneksi, "SELECT
     data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_obat.keterangan_barang, lemari_obat.nama_lemari,
     data_persediaan.masuk, data_persediaan.keluar, data_persediaan.stok_tersedia
       FROM data_obat
@@ -102,7 +102,7 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
   </thead>
 
 <?php
-  $no=1; while($result = mysql_fetch_array($query)){
+  $no=1; while($result = mysqli_fetch_array($query)){
     if ($result['stok_tersedia'] <= 10) {
       $color = "rgba(255, 255, 0, .2)";
     }else {

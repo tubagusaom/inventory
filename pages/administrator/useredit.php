@@ -14,18 +14,19 @@ if(isset($_GET['id']))
 	    </tr>
 	    <tr>
 	      <td><label>Username</label></td>
-	      <td><input type="text" name="username" id="username" value="<?php echo $row['username']; ?>"></td>
+	      <td><input type="text" readonly style="background:#ddd" name="username" id="username" value="<?php echo $row['username']; ?>"></td>
 	    </tr>
 	    <tr>
 	      <td><label>password</label></td>
-	      <td><input type="password" name="password" id="password" value="<?=md5($_POST['password']); ?>" disabled style="background:#ddd"></td>
+	      <td><input type="password" name="password" id="password" value="<?=($row['password']); ?>" disabled style="background:#ddd"></td>
 	    </tr>
 	    <tr>
 	      <td><label>Jenis Login</label></td>
 	      <td>
-					<select name="jenis" id="jenis">
-		        <option <?php if ($row['login_hash'] == "gudang") { echo "selected"; }else{ echo "";} ?> value="gudang">Bagian Gudang</option>
-		        <option <?php if ($row['login_hash'] == "apoteker") { echo "selected"; }else{ echo "";} ?> value="apoteker">Apoteker</option>
+				<select name="jenis" id="jenis">
+		        <option <?php if ($row['login_hash'] == "toko") { echo "selected"; }else{ echo "";} ?> value="toko">Toko</option>
+		        <option <?php if ($row['login_hash'] == "gudang") { echo "selected"; }else{ echo "";} ?> value="gudang">Gudang</option>
+		        <option <?php if ($row['login_hash'] == "admin") { echo "selected"; }else{ echo "";} ?> value="gudang">Admin</option>
 		        <option <?php if ($row['login_hash'] == "pimpinan") { echo "selected"; }else{ echo "";} ?> value="pimpinan">Pimpinan</option>
 		      </select>
 	      </td>

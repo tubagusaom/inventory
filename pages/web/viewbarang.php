@@ -1,4 +1,11 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tampil Barang</title>
+
+	<?php
 include("../../_db.php");
 ?>
 <link rel="stylesheet" href="../../css/style.default.css" type="text/css">
@@ -62,7 +69,11 @@ border-radius:3px;
 }
 
 </style>
-<h2 style="text-align:center; padding:5px">Data Barang</h2>
+</head>
+
+<body>
+	
+<h2 style="text-align:center; padding:15px 5px 5px 5px;color:#634927">Data Barang</h2>
 <?php
 	/* Koneksi database*/
 	include 'paging.php'; //include pagination file
@@ -75,18 +86,18 @@ border-radius:3px;
 	$reload="viewbarang.php?";
 	//Cari berapa banyak jumlah data*/
 
-	$count_query   = mysql_query("SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
+	$count_query   = mysqli_query($koneksi, "SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
 FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat");
 	if($count_query === FALSE) {
     die(mysql_error());
 	}
-	$row     = mysql_fetch_array($count_query);
+	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data
 
 	$total_hals = ceil($numrows/$per_hal);
 
 	//jalankan query menampilkan data per blok $offset dan $per_hal
-	$query = mysql_query("SELECT
+	$query = mysqli_query($koneksi, "SELECT
 		data_obat.kode_obat,
 		data_obat.nama_obat,
 		data_obat.kode_lemari,
@@ -102,19 +113,19 @@ FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaa
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive table table-striped table-bordered" style="background:whitesmoke">
 <thead>
   <tr>
-    <td class="no_sort"></td>
-    <td class="no_sort"></td>
+    <td colspan="3" class="no_sort"></td>
+    <td colspan="2" class="no_sort"></td>
   </tr>
   <tr>
-		<th class="no_sort">Kategori</th>
-    <th class="no_sort">Nama Barang</th>>
-    <th class="no_sort">Keterangan</th>
-    <th class="no_sort">Stok</th>
-    <th class="no_sort"></th>
+    <th style="background: burlywood!important;color:#634927!important" class="no_sort">Barang</th>
+	<th style="background: burlywood!important;color:#634927!important" class="no_sort">Etalase</th>
+    <th style="background: burlywood!important;color:#634927!important" class="no_sort">Catatan</th>
+    <th style="background: burlywood!important;color:#634927!important" class="no_sort">Stok Tersedia</th>
+    <th style="background: burlywood!important;color:#634927!important;text-align:center" class="no_sort">-</th>
     </tr>
   </thead>
 <?php
-while($result = mysql_fetch_array($query)){
+while($result = mysqli_fetch_array($query)){
 ?>
 <tr >
 
@@ -125,7 +136,7 @@ while($result = mysql_fetch_array($query)){
     <?php $ids=sha1($result['kode_obat']); ?>
     <td style="text-align:center">
 			<a href="#" onClick="sendValue('<?php echo $result['kode_obat']; ?>','<?php echo $result['nama_obat']; ?>');">
-				<span class="btn btn-success">Pilih</span>
+				<span class="btn btn-success" style="border-radius:4px!important;">Pilih</span>
 			</a>
 		</td>
 
@@ -137,3 +148,9 @@ while($result = mysql_fetch_array($query)){
 <?php
 echo paginate($reload, $hal, $total_hals, $adjacents);
 ?>
+
+
+</body>
+
+</html>
+

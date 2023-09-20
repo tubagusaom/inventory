@@ -11,7 +11,7 @@
       </tr>
       <tr>
         <td><label>Kode Barang</label></td>
-        <td><input type="text" name="kodeobat" id="kodeobat" placeholder="Pilih Barang.." class="full-width"  onClick="window.open('<?php echo $baseurl; ?>pages/web/viewbarang.php','popuppage','width=700,toolbar=0,resizable=0,scrollbars=no,height=400,top=100,left=100');" required></td>
+        <td><input type="text" name="kodeobat" id="kodeobat" placeholder="Pilih Barang.." class="full-width"  onClick="window.open('<?=base_url()?>pages/web/viewbarang.php','popuppage','width=700,toolbar=0,resizable=0,scrollbars=no,height=400,top=100,left=100');" required></td>
       </tr>
       <tr>
         <td><label>Nama Barang</label></td>
@@ -43,7 +43,7 @@ ob_end_flush();
 <p></p>
 <span>
 <?php
-include("pages/tuliv/stok.php");
+include("pages/admin/stok.php");
 ?>
 </span>
 
@@ -51,18 +51,18 @@ include("pages/tuliv/stok.php");
 if(isset($_POST['button']))
 {
 	$newDate = date("Y-m-d", strtotime($_POST['tglr']));
-	$q=mysql_query("Insert into obat_masuk (`tgl`,`kode_obat`,`jumlah`,`username`) values ('".$newDate."','".$_POST['kodeobat']."','".$_POST['qty']."','".$_SESSION['login_user']."')") or die(mysql_error());
-	$q2=mysql_query("Select * from data_persediaan where kode_obat='".$_POST['kodeobat']."'");
-	$rc=mysql_num_rows($q2);
+	$q=mysqli_query($koneksi, "Insert into obat_masuk (`tgl`,`kode_obat`,`jumlah`,`username`) values ('".$newDate."','".$_POST['kodeobat']."','".$_POST['qty']."','".$_SESSION['login_user']."')") or die(mysql_error());
+	$q2=mysqli_query($koneksi, "Select * from data_persediaan where kode_obat='".$_POST['kodeobat']."'");
+	$rc=mysqli_num_rows($q2);
 	if($rc==1)
 	{
-		$q3=mysql_query("Update data_persediaan SET masuk=masuk + ".$_POST['qty'].",stok_tersedia=stok_tersedia + ".$_POST['qty']." Where kode_obat='".$_POST['kodeobat']."'");
+		$q3=mysqli_query($koneksi, "Update data_persediaan SET masuk=masuk + ".$_POST['qty'].",stok_tersedia=stok_tersedia + ".$_POST['qty']." Where kode_obat='".$_POST['kodeobat']."'");
 		if($q3)
 		{
 			echo "<script>window.location='?cat=pimpinan&page=entry'</script>";
 		}
 	}else{
-		$q4=mysql_query("Insert into data_persediaan (`kode_obat`,`masuk`,`stok_tersedia`) values ('".$_POST['kodeobat']."','".$_POST['qty']."','".$_POST['qty']."')");
+		$q4=mysqli_query($koneksi, "Insert into data_persediaan (`kode_obat`,`masuk`,`stok_tersedia`) values ('".$_POST['kodeobat']."','".$_POST['qty']."','".$_POST['qty']."')");
 		if($q4)
 		{
 			echo "<script>window.location='?cat=pimpinan&page=entry'</script>";

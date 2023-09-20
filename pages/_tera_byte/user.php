@@ -21,9 +21,10 @@
       <td><label>Jenis Login</label></td>
       <td>
         <select name="jenis" id="jenis">
-          <option value="pimpinan">Pimpinan</option>
-          <option value="gudang">Bagian Gudang</option>
+          <option value="toko">Toko</option>
+          <option value="gudang">Gudang</option>
           <option value="admin">Admin</option>
+          <option value="pimpinan">Pimpinan</option>
         </select>
       </td>
     </tr>

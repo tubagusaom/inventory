@@ -106,22 +106,22 @@ $("#datepicker2").datepicker({
     <?php
 	echo "Pencarian <b style='color:#449d44'>Barang ".$_POST['lp']."</b> tanggal <b style='color:#449d44'>". date("d M Y", strtotime($_POST['tglr']))."</b> s/d <b style='color:#449d44'>".date("d M Y", strtotime($_POST['tglr2']))."</b>";
 	//Cari berapa banyak jumlah data*/
-	$count_query=mysql_query("SELECT COUNT(ID_".$_POST['lp'].") AS numrows FROM obat_".$_POST['lp']."
+	$count_query=mysqli_query($koneksi, "SELECT COUNT(ID_".$_POST['lp'].") AS numrows FROM obat_".$_POST['lp']."
 		LEFT JOIN data_obat ON obat_".$_POST['lp'].".kode_obat = data_obat.kode_obat  WHERE tgl BETWEEN '".$_POST['tglr']."' AND '".$_POST['tglr2']."' GROUP BY ID_".$_POST['lp']."");
 
-	$count_query2   = mysql_query("SELECT COUNT(ID_".$_POST['lp'].") AS numrows FROM obat_".$_POST['lp']." Where tgl BETWEEN '".$_POST['tglr']."' AND '".$_POST['tglr2']."'");
+	$count_query2   = mysqli_query($koneksi, "SELECT COUNT(ID_".$_POST['lp'].") AS numrows FROM obat_".$_POST['lp']." Where tgl BETWEEN '".$_POST['tglr']."' AND '".$_POST['tglr2']."'");
 	if($count_query === FALSE) {
-    die(mysql_error());
+    die(mysqli_error());
 	}
-	$row     = mysql_fetch_array($count_query);
+	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data
 
 	$total_hals = ceil($numrows/$per_hal);
 
 
 	//jalankan query menampilkan data per blok $offset dan $per_hal
-	$query2 = mysql_query("SELECT * from obat_".$_POST['lp']." Where tgl BETWEEN '".$_POST['tglr']."' AND '".$_POST['tglr2']."' GROUP BY ID_".$_POST['lp']." LIMIT $offset,$per_hal");
-	$query=mysql_query("SELECT obat_".$_POST['lp'].".tgl, obat_".$_POST['lp'].".kode_obat, data_obat.nama_obat, data_obat.kode_lemari, lemari_obat.nama_lemari, obat_".$_POST['lp'].".jumlah, user_login.*
+	$query2 = mysqli_query($koneksi, "SELECT * from obat_".$_POST['lp']." Where tgl BETWEEN '".$_POST['tglr']."' AND '".$_POST['tglr2']."' GROUP BY ID_".$_POST['lp']." LIMIT $offset,$per_hal");
+	$query=mysqli_query($koneksi, "SELECT obat_".$_POST['lp'].".tgl, obat_".$_POST['lp'].".kode_obat, data_obat.nama_obat, data_obat.kode_lemari, lemari_obat.nama_lemari, obat_".$_POST['lp'].".jumlah, user_login.*
 	FROM obat_".$_POST['lp']."
 		LEFT JOIN data_obat ON obat_".$_POST['lp'].".kode_obat = data_obat.kode_obat
 		LEFT JOIN lemari_obat ON data_obat.kode_lemari = lemari_obat.kode_lemari
@@ -142,7 +142,7 @@ if($numrows > 0 )
 
 				<td width="17%">
 					Export To
-					<a href='<?=$baseurl."pages/web/export-excel-barang.php?tgl1=".$_POST['tglr']."&tgl2=".$_POST['tglr2']."&field=".$_POST['lp']; ?>' target="_blank">
+					<a href='<?=base_url()."pages/web/export-excel-barang.php?tgl1=".$_POST['tglr']."&tgl2=".$_POST['tglr2']."&field=".$_POST['lp']; ?>' target="_blank">
 						<img src="img/excel.ico" border="1" width="32" height="32" alt="Tubagus Aom">
 					</a>
 				</td>
@@ -165,24 +165,24 @@ if($numrows > 0 )
   <tr>
     <th class="no_sort">Tanggal Transaksi</th>
     <th class="no_sort">Kode Barang</th>
-		<th class="no_sort">Kategori</th>
+	<th class="no_sort">Etalase</th>
     <th class="no_sort">Nama Barang</th>
     <th class="no_sort">Jumlah</th>
-		<th class="no_sort" colspan="2" style="text-align:center; width:18%">Created</th>
+	<th class="no_sort" colspan="2" style="text-align:center; width:18%">Created</th>
   </tr>
   </thead>
 <?php
-while($result = mysql_fetch_array($query)){
+while($result = mysqli_fetch_array($query)){
 ?>
 <tr >
 
     <td width="15%"><?php echo date("d M Y", strtotime($result['tgl'])); ?></td>
     <td><?php echo $result['kode_obat']; ?></td>
-		<td><?php echo $result['nama_lemari']; ?></td>
+	<td><?php echo $result['nama_lemari']; ?></td>
     <td><?php echo $result['nama_obat']; ?></td>
     <td><?php echo $result['jumlah']; ?></td>
-		<td><?=$result['login_hash']; ?></td>
-		<td style="border-left: none">| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$result['nama_user']; ?></td>
+	<td><?=$result['login_hash']; ?></td>
+	<td style="border-left: none">| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$result['nama_user']; ?></td>
   </tr>
 <?php
 }

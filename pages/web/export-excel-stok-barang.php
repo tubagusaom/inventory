@@ -15,7 +15,7 @@
 include("../../_db.php");
 
 
-$query = mysql_query("SELECT
+$query = mysqli_query($koneksi, "SELECT
   data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, lemari_obat.nama_lemari,
   data_persediaan.masuk, data_persediaan.keluar, data_persediaan.stok_tersedia
     FROM data_obat
@@ -35,7 +35,7 @@ header("Expires: 0");
 <table border="1" style="width:100%">
 		<tr>
 			<th colspan="6" align="center">
-				<b style="font-size:20px;">LAPORAN STOK BARANG "TULIV"</b> <br>
+				<b style="font-size:20px;">LAPORAN STOK BARANG "___"</b> <br>
 				<font>Periode <?=date("M-Y"); ?></font>
 			</th>
 		</tr>
@@ -50,7 +50,7 @@ header("Expires: 0");
     </tr>
 
 		<?php
-		while($result = mysql_fetch_array($query)){
+		while($result = mysqli_fetch_array($query)){
 		?>
 		<tr>
       <td align="left"><?=$result['kode_obat']; ?></td>
