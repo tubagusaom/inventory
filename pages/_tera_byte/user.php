@@ -1,8 +1,6 @@
 <?php
-ob_start();
+  ob_start();
 ?>
-
-
 
 <form name="form1" method="post" action="?cat=administrator&page=user&act=1">
 <div class="table-responsive">
@@ -54,11 +52,14 @@ ob_start();
     <th>Jenis Login</th>
     <th>&nbsp;</th>
   </tr>
+
   <?php
-  $rw=mysql_query("Select * from user_login where login_hash NOT LIKE 'administrator'");
-  while($s=mysql_fetch_array($rw))
-  {
+    $rw=mysqli_query($koneksi, "Select * from user_login where login_hash NOT LIKE '_tera_byte'");
+    // $jumlah = mysqli_num_rows($rw);
+    
+    while($s=mysqli_fetch_array($rw)) {
   ?>
+
   <tr>
     <td><?php echo $s['nama_user']; ?></td>
     <td><?php echo $s['username']; ?></td>
@@ -69,18 +70,19 @@ ob_start();
       <a href="?cat=administrator&page=user&del=1&id=<?php echo sha1($s['username']); ?>" onclick="return confirm('apakah anda yakin hapus?')">Hapus</a>
     </td>
   </tr>
+
   <?php
-  }
+    }
   ?>
+
 </table>
 <!-- </span> -->
 <?php
 if(isset($_GET['act']))
 {
 
-	$rs=mysql_query("Insert into user_login (`username`,`password`,`nama_user`,`login_hash`) values ('".$_POST['username']."','".md5($_POST['password'])."','".$_POST['nama_user']."','".$_POST['jenis']."')") or die(mysql_error());
-	if($rs)
-	{
+	$rs=mysqli_query($koneksi, "Insert into user_login (`username`,`password`,`nama_user`,`login_hash`) values ('".$_POST['username']."','".md5($_POST['password'])."','".$_POST['nama_user']."','".$_POST['jenis']."')") or die(mysql_error());
+	if($rs) {
 		echo "<script>window.location='?cat=administrator&page=user'</script>";
 	}
 }
@@ -90,7 +92,7 @@ if(isset($_GET['act']))
 if(isset($_GET['del']))
 {
 	$ids=$_GET['id'];
-	$ff=mysql_query("Delete from user_login Where sha1(username)='".$ids."'");
+	$ff=mysqli_query($koneksi, "Delete from user_login Where sha1(username)='".$ids."'");
 	if($ff)
 	{
 		echo "<script>window.location='?cat=administrator&page=user'</script>";

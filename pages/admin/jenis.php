@@ -1,7 +1,7 @@
 <?php
 ob_start();
 ?>
-<form name="form1" method="post" action="?cat=tuliv&page=jenis&act=1">
+<form name="form1" method="post" action="?cat=admin&page=jenis&act=1">
   <div class="table-responsive">
     <table class=" table-aom">
       <tr>
@@ -23,17 +23,17 @@ ob_end_flush();
 <p></p>
 <span>
 <?php
-include("pages/tuliv/lemariview.php");
+include("pages/admin/lemariview.php");
 ?>
 </span>
 
 <?php
 if(isset($_GET['act']))
 {
-	$rs=mysql_query("Insert into lemari_obat (`nama_lemari`) values ('".$_POST['nama_lemari']."')") or die(mysql_error());
+	$rs=mysqli_query($koneksi, "Insert into lemari_obat (`nama_lemari`) values ('".$_POST['nama_lemari']."')") or die(mysql_error());
 	if($rs)
 	{
-		echo "<script>window.location='?cat=tuliv&page=jenis'</script>";
+		echo "<script>window.location='?cat=admin&page=jenis'</script>";
 	}
 }
 ?>
@@ -42,10 +42,10 @@ if(isset($_GET['act']))
 if(isset($_GET['del']))
 {
 	$ids=$_GET['id'];
-	$ff=mysql_query("Delete from lemari_obat Where sha1(kode_lemari)='".$ids."'");
+	$ff=mysqli_query($koneksi, "Delete from lemari_obat Where sha1(kode_lemari)='".$ids."'");
 	if($ff)
 	{
-		echo "<script>window.location='?cat=tuliv&page=jenis'</script>";
+		echo "<script>window.location='?cat=admin&page=jenis'</script>";
 	}
 }
 ?>

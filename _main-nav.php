@@ -2,7 +2,7 @@
 
 <div class="leftmenu">
   <ul class="nav nav-tabs nav-stacked">
-    <li class="active"><a href="dashboard.php"><span class="icon-align-justify"></span> Dashboard</a></li>
+    <li class="active"><a href="<?=base_url()?>dashboard.php"><span class="icon-align-justify"></span> Dashboard</a></li>
 
   <!--MENU GUDANG-->
   <?php

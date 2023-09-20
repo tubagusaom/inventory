@@ -2,10 +2,10 @@
 ob_start();
 if(isset($_GET['id']))
 {
-	$rs=mysql_query("Select * from lemari_obat where sha1(kode_lemari)='".$_GET['id']."'");
-	$row=mysql_fetch_array($rs);
+	$rs=mysqli_query($koneksi, "Select * from lemari_obat where sha1(kode_lemari)='".$_GET['id']."'");
+	$row=mysqli_fetch_array($rs);
 ?>
-<form name="form1" method="post" action="?cat=tuliv&page=lemariedit&id=<?php echo $_GET['id']; ?>&edit=1">
+<form name="form1" method="post" action="?cat=admin&page=lemariedit&id=<?php echo $_GET['id']; ?>&edit=1">
 	<div class="table-responsive">
     <table class=" table-aom">
       <tr>
@@ -24,17 +24,17 @@ if(isset($_GET['id']))
 <?php
 ob_end_flush();
 }else{
-	echo "<script>window.location='?cat=tuliv&page=jenis'</script>";
+	echo "<script>window.location='?cat=admin&page=jenis'</script>";
 }
 ?>
 <?php
 if(isset($_GET['edit']))
 {
 
-	$rs=mysql_query("Update lemari_obat SET nama_lemari='".$_POST['namalemari']."' Where sha1(kode_lemari)='".$_GET['id']."'");
+	$rs=mysqli_query($koneksi, "Update lemari_obat SET nama_lemari='".$_POST['namalemari']."' Where sha1(kode_lemari)='".$_GET['id']."'");
 	if($rs)
 	{
-		echo "<script>window.location='?cat=tuliv&page=jenis'</script>";
+		echo "<script>window.location='?cat=admin&page=jenis'</script>";
 	}
 }
 ?>

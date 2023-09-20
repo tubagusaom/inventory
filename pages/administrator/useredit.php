@@ -2,8 +2,8 @@
 ob_start();
 if(isset($_GET['id']))
 {
-	$rs=mysql_query("Select * from user_login where sha1(username)='".$_GET['id']."'");
-	$row=mysql_fetch_array($rs);
+	$rs=mysqli_query($koneksi, "Select * from user_login where sha1(username)='".$_GET['id']."'");
+	$row=mysqli_fetch_array($rs);
 ?>
 <form name="form1" method="post" action="?cat=administrator&page=useredit&id=<?php echo $_GET['id']; ?>&edit=1">
 	<div class="table-responsive">

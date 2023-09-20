@@ -1,12 +1,12 @@
 <?php
 ob_start();
 
-$sql_kode = mysql_query("SELECT kode_obat FROM data_obat order by kode_obat DESC LIMIT 1");
+$sql_kode = mysqli_query($koneksi, "SELECT kode_obat FROM data_obat order by kode_obat DESC LIMIT 1");
  if($sql_kode === FALSE) {
    die(mysql_error());
  }
 
- $data_kode=mysql_fetch_array($sql_kode);
+ $data_kode=mysqli_fetch_array($sql_kode);
 
 	$crop=substr($data_kode[0],8);
 
@@ -48,11 +48,11 @@ $sql_kode = mysql_query("SELECT kode_obat FROM data_obat order by kode_obat DESC
           <select name="kode_lemari" id="kode_lemari" >
      					<option value="" style="color:darkblue; font-weight:700">- Pilih Kategori -</option>
      					<?php
-     						$queryx = mysql_query("SELECT * FROM lemari_obat");
+     						$queryx = mysqli_query($koneksi, "SELECT * FROM lemari_obat");
                  if($queryx === FALSE) {
-                   die(mysql_error());
+                   die(mysqli_error());
                	}
-     						while($datax=mysql_fetch_array($queryx)){
+     						while($datax=mysqli_fetch_array($queryx)){
      							echo "<option value='$datax[0]'>$datax[1]</option>";
      						}
      					?>
@@ -88,7 +88,7 @@ include("pages/gudang/barangview.php");
 if(isset($_GET['act']))
 {
 
-	$rs=mysql_query("Insert into data_obat (`kode_obat`,`nama_obat`,`kode_lemari`,`stts_obat`,`keterangan_barang`) values ('".$_POST['kode_obat']."','".$_POST['namaobat']."','".$_POST['kode_lemari']."','1','".$_POST['keterangan_barang']."')") or die(mysql_error());
+	$rs=mysqli_query($koneksi, "Insert into data_obat (`kode_obat`,`nama_obat`,`kode_lemari`,`stts_obat`,`keterangan_barang`) values ('".$_POST['kode_obat']."','".$_POST['namaobat']."','".$_POST['kode_lemari']."','1','".$_POST['keterangan_barang']."')") or die(mysql_error());
 	if($rs)
 	{
 		echo "<script>window.location='?cat=gudang&page=barang'</script>";
@@ -100,7 +100,7 @@ if(isset($_GET['act']))
 if(isset($_GET['del']))
 {
 	$ids=$_GET['id'];
-	$ff=mysql_query("Delete from data_obat Where sha1(kode_obat)='".$ids."'");
+	$ff=mysqli_query($koneksi, "Delete from data_obat Where sha1(kode_obat)='".$ids."'");
 	if($ff)
 	{
 		echo "<script>window.location='?cat=gudang&page=barang'</script>";

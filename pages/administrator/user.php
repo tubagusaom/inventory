@@ -55,8 +55,8 @@ ob_start();
     <th>&nbsp;</th>
   </tr>
   <?php
-  $rw=mysql_query("Select * from user_login where login_hash NOT LIKE 'administrator'");
-  while($s=mysql_fetch_array($rw))
+  $rw=mysqli_query($koneksi, "Select * from user_login where login_hash NOT LIKE '_tera_byte'");
+  while($s=mysqli_fetch_array($rw))
   {
   ?>
   <tr>
@@ -78,7 +78,7 @@ ob_start();
 if(isset($_GET['act']))
 {
 
-	$rs=mysql_query("Insert into user_login (`username`,`password`,`nama_user`,`login_hash`) values ('".$_POST['username']."','".md5($_POST['password'])."','".$_POST['nama_user']."','".$_POST['jenis']."')") or die(mysql_error());
+	$rs=mysqli_query($koneksi, "Insert into user_login (`username`,`password`,`nama_user`,`login_hash`) values ('".$_POST['username']."','".md5($_POST['password'])."','".$_POST['nama_user']."','".$_POST['jenis']."')") or die(mysql_error());
 	if($rs)
 	{
 		echo "<script>window.location='?cat=administrator&page=user'</script>";
@@ -90,7 +90,7 @@ if(isset($_GET['act']))
 if(isset($_GET['del']))
 {
 	$ids=$_GET['id'];
-	$ff=mysql_query("Delete from user_login Where sha1(username)='".$ids."'");
+	$ff=mysqli_query($koneksi, "Delete from user_login Where sha1(username)='".$ids."'");
 	if($ff)
 	{
 		echo "<script>window.location='?cat=administrator&page=user'</script>";

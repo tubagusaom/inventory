@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="../../css/style.default.css" type="text/css">
+<!-- <link rel="stylesheet" href="../../css/style.default.css" type="text/css"> -->
+<link rel="stylesheet" href="<?=base_url()?>css/style.default.css" type="text/css">
 <style>
 .pagin {
 padding: 10px 0;
@@ -6,7 +7,7 @@ font:bold 11px/30px arial, serif;
 }
 .pagin * {
 padding: 2px 6px;
-color:#0A7EC5;
+color:#0A7EC5!important;
 margin: 2px;
 border-radius:3px;
 }
@@ -58,21 +59,21 @@ border-radius:3px;
 	$per_hal = 5; //berapa banyak blok
 	$adjacents  = 5;
 	$offset = ($hal - 1) * $per_hal;
-	$reload="?cat=tuliv&page=jenis";
+	$reload="?cat=admin&page=jenis";
 	//Cari berapa banyak jumlah data*/
 
-	$count_query   = mysql_query("SELECT COUNT(lemari_obat.kode_lemari) AS numrows,lemari_obat.kode_lemari, lemari_obat.nama_lemari FROM lemari_obat");
+	$count_query   = mysqli_query($koneksi, "SELECT COUNT(lemari_obat.kode_lemari) AS numrows,lemari_obat.kode_lemari, lemari_obat.nama_lemari FROM lemari_obat");
 	if($count_query === FALSE) {
-    die(mysql_error());
+    die(mysqli_error());
 	}
-	$row     = mysql_fetch_array($count_query);
+	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data
 
 	$total_hals = ceil($numrows/$per_hal);
 
 
 	//jalankan query menampilkan data per blok $offset dan $per_hal
-	$query = mysql_query("SELECT lemari_obat.kode_lemari, lemari_obat.nama_lemari FROM lemari_obat GROUP BY lemari_obat.kode_lemari LIMIT $offset,$per_hal");
+	$query = mysqli_query($koneksi, "SELECT lemari_obat.kode_lemari, lemari_obat.nama_lemari FROM lemari_obat GROUP BY lemari_obat.kode_lemari LIMIT $offset,$per_hal");
 
 ?>
 <table style="margin-top:10px" width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive table table-striped table-bordered">
@@ -85,14 +86,14 @@ border-radius:3px;
   </thead>
 <?php
 $no=1;
-while($result = mysql_fetch_array($query)){
+while($result = mysqli_fetch_array($query)){
 ?>
 <tr>
 		<td width="5%" style="text-align:center"><?=$no?>.</td>
     <td><?php echo $result['nama_lemari']; ?></td>
     <td style="text-align:center; font-weight:bold">
-			<a href="?cat=tuliv&page=lemariedit&id=<?php echo sha1($result['kode_lemari']); ?>" class="a-aom">Edit</a> -
-      <!-- <a href="?cat=gudang&page=lemari&del=1&id=<?php echo sha1($result['kode_lemari']); ?>" class="a-aom" onclick="return confirm('apakah anda yakin hapus?')">Hapus</a> -->
+			<a href="?cat=admin&page=lemariedit&id=<?php echo sha1($result['kode_lemari']); ?>" class="a-aom">Edit</a>
+			<!-- - <a href="?cat=gudang&page=lemari&del=1&id=<?php echo sha1($result['kode_lemari']); ?>" class="a-aom" onclick="return confirm('apakah anda yakin hapus?')">Hapus</a> -->
 		</td>
   </tr>
 <?php
@@ -100,5 +101,5 @@ $no++;}
 ?>
 </table>
 <?php
-echo paginate($reload, $hal, $total_hals, $adjacents);
+	echo paginate($reload, $hal, $total_hals, $adjacents);
 ?>
