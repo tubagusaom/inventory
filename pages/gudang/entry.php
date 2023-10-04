@@ -9,7 +9,10 @@
       </tr>
       <tr>
         <td><label>Kode Barang</label></td>
-        <td><input type="text" name="kodeobat" id="kodeobat" placeholder="Pilih Barang.." class="full-width"  onClick="window.open('<?= base_url(); ?>pages/web/viewbarang.php','popuppage','width=700,toolbar=0,resizable=0,scrollbars=no,height=400,top=100,left=100');" required></td>
+        <td>
+          <!-- <input type="text" name="kodeobat" id="kodeobat" placeholder="Pilih Barang.." class="full-width"  onClick="window.open('<?= base_url(); ?>pages/web/viewbarang.php','popuppage','width=700,toolbar=0,resizable=0,scrollbars=no,height=400,top=100,left=100');" required> -->
+          <input type="text" name="kodeobat" id="kodeobat" class="full-width" placeholder="Pilih Barang.." required>
+        </td>
       </tr>
       <tr>
         <td><label>Nama Barang</label></td>
@@ -53,3 +56,5 @@ if(isset($_POST['button']))
 	}
 }
 ?>
+
+<?php include("pages/web/popup_viewbarang.php"); ?>

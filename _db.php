@@ -1,7 +1,7 @@
 <?php
 	error_reporting(1);
 
-	$env = 'online'; // lokal atau online
+	$env = 'lokal'; // lokal atau online
 
 	if($env=='lokal'){
 		$host	 		= "localhost";
@@ -15,7 +15,7 @@
 		$pass	 		= "bismIll@h";
 		$dabname 		= "deelabs_inventory_terabyte_db";
 		$base			= "https://inventory.itconsultant.biz.id";
-	} 
+	}
 
 	// $conn = mysql_connect( $host, $user, $pass) or die('Could not connect to mysql server.' );
 	// mysql_select_db($dabname, $conn) or die('Could not select database.');

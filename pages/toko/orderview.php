@@ -83,15 +83,30 @@ border-radius:3px;
 	// var_dump($numrows); die();
 
 	//jalankan query menampilkan data per blok $offset dan $per_hal
-	$query = mysqli_query($koneksi, "SELECT
-		data_obat.kode_obat,
-		data_obat.nama_obat,
-		data_obat.stts_obat
-			FROM data_obat
-		    -- LEFT JOIN jenis_obat ON data_obat.kode_lemari = jenis_obat.kode_lemari
-			WHERE data_obat.stts_obat NOT LIKE '1'
-		-- LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat
-		GROUP BY data_obat.kode_obat LIMIT $offset,$per_hal");
+	// $query = mysqli_query($koneksi, "SELECT
+	// 	`kode_obat`,
+	// 	`nama_obat`,
+	// 	`stts_obat`
+	// 		FROM data_obat
+	// 	    -- LEFT JOIN jenis_obat ON data_obat.kode_lemari = jenis_obat.kode_lemari
+	// 		WHERE stts_obat NOT LIKE '1'
+	// 	-- LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat
+	// 		ORDER BY kode_obat ASC
+	// 	GROUP BY kode_obat LIMIT $offset,$per_hal");
+
+		$sql	  =
+							"SELECT
+								`kode_obat`,
+								`nama_obat`,
+								`stts_obat`
+							FROM data_obat
+								--
+								WHERE stts_obat NOT LIKE '1'
+								GROUP BY kode_obat DESC
+								LIMIT $offset,$per_hal
+							";
+
+		$query	=mysqli_query($koneksi,$sql);
 
 ?>
 <table style="margin-top:10px" width="100%" border="0" cellspacing="0" cellpadding="0" class="responsive table table-striped table-bordered">
@@ -127,7 +142,7 @@ border-radius:3px;
     <?php if ($result['stts_obat'] == "0") { ?>
 
     <td>
-			<a href="?cat=toko&page=ordergedit&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom">Edit</a> -
+			<!-- <a href="?cat=toko&page=ordergedit&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom">Edit</a> - -->
 			<a href="?cat=toko&page=order&del=1&id=<?php echo sha1($result['kode_obat']); ?>" class="a-aom" onclick="return confirm('apakah anda yakin hapus?')">Hapus</a>
 		</td>
 

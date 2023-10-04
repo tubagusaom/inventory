@@ -1,4 +1,6 @@
-<?php ob_start(); ?>
+<?php
+  ob_start();
+?>
 
 <script src="js/jquery-ui.js"></script>
 <h2 style="padding-bottom:10px">Stok Barang Masuk</h2>
@@ -11,7 +13,10 @@
       </tr>
       <tr>
         <td><label>Kode Barang</label></td>
-        <td><input type="text" name="kodeobat" id="kodeobat" placeholder="Pilih Barang.." class="full-width"  onClick="window.open('<?=base_url()?>pages/web/viewbarang.php','popuppage','width=700,toolbar=0,resizable=0,scrollbars=no,height=400,top=100,left=100');" required></td>
+        <td>
+          <!-- <input type="text" name="kodeobat" id="kodeobat" placeholder="Pilih Barang.." class="full-width"  onClick="window.open('<?=base_url()?>pages/web/viewbarang.php','popuppage','width=700,toolbar=0,resizable=0,scrollbars=no,height=400,top=100,left=100');" required> -->
+          <input type="text" name="kodeobat" id="kodeobat" class="full-width" placeholder="Pilih Barang.." required>
+        </td>
       </tr>
       <tr>
         <td><label>Nama Barang</label></td>
@@ -35,12 +40,16 @@
 <?php
 ob_end_flush();
 ?>
+
+<?php include("pages/web/popup_viewbarang.php"); ?>
+
 <p></p>
 <p></p>
 <p></p>
 <p></p>
 <p></p>
 <p></p>
+
 <span>
 <?php
 include("pages/admin/stok.php");
@@ -70,3 +79,36 @@ if(isset($_POST['button']))
 	}
 }
 ?>
+
+
+
+
+<script>
+// // Get the modal
+// var modals = document.getElementById("myModal");
+//
+// // Get the button that opens the modal
+// var kodeobat = document.getElementById("kodeobat");
+//
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+//
+// modals.style.display = "none";
+//
+// // When the user clicks the button, open the modal
+// kodeobat.onclick = function() {
+//   modals.style.display = "block";
+// }
+//
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//   modals.style.display = "none";
+// }
+//
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modals.style.display = "none";
+//   }
+// }
+</script>

@@ -4613,7 +4613,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
   top: 10%;
   left: 50%;
   z-index: 1050;
-  width: 560px;
+  width: 600px;
   margin-left: -280px;
   background-color: #fff;
   border: 1px solid #999;
@@ -4649,7 +4649,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 }
 
 .modal-header .close {
-  margin-top: 2px
+  margin-top: -20px
 }
 
 .modal-header h3 {

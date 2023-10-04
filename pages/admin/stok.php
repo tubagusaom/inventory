@@ -64,7 +64,7 @@ border-radius:3px;
 	$count_query   = mysqli_query($koneksi, "SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
 FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat");
 	if($count_query === FALSE) {
-    die(mysql_error());
+    die(mysqli_error());
 	}
 	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data

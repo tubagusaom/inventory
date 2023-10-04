@@ -13,9 +13,14 @@ include("../../_db.php");
 <!-- Begin
 function sendValue (s,s2){
 
-window.opener.document.getElementById('kodeobat').value = s;
-window.opener.document.getElementById('namaobat').value = s2;
-window.close();
+// window.opener.document.getElementById('kodeobat').value = s;
+// window.opener.document.getElementById('namaobat').value = s2;
+// window.close();
+
+document.getElementById('kodeobat').value = s;
+document.getElementById('namaobat').value = s2;
+modal.style.display = "none";
+
 }
 //  End -->
 </script>
@@ -72,8 +77,8 @@ border-radius:3px;
 </head>
 
 <body>
-	
-<h2 style="text-align:center; padding:15px 5px 5px 5px;color:#634927">Data Barang</h2>
+
+<!-- <h2 style="text-align:center; padding:15px 5px 5px 5px;color:#634927">Data Barang</h2> -->
 <?php
 	/* Koneksi database*/
 	include 'paging.php'; //include pagination file
@@ -89,7 +94,7 @@ border-radius:3px;
 	$count_query   = mysqli_query($koneksi, "SELECT COUNT(data_obat.kode_obat) AS numrows,data_obat.kode_obat, data_obat.nama_obat, data_obat.kode_lemari, data_persediaan.stok_tersedia
 FROM data_obat LEFT JOIN data_persediaan ON data_obat.kode_obat = data_persediaan.kode_obat");
 	if($count_query === FALSE) {
-    die(mysql_error());
+    die(mysqli_error());
 	}
 	$row     = mysqli_fetch_array($count_query);
 	$numrows = $row['numrows']; //dapatkan jumlah data
@@ -153,4 +158,3 @@ echo paginate($reload, $hal, $total_hals, $adjacents);
 </body>
 
 </html>
-
