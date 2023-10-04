@@ -1,7 +1,7 @@
 <?php
 	error_reporting(1);
 
-	$env = 'lokal'; // lokal atau online
+	$env = 'online'; // lokal atau online
 
 	if($env=='lokal'){
 		$host	 		= "localhost";
